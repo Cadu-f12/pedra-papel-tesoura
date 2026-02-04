@@ -1,7 +1,7 @@
-const score = {
-    "win": 0,
-    "lose": 0,
-    "tie": 0
+const score = JSON.parse(localStorage.getItem('score')) || {
+    win: 0,
+    lose: 0,
+    tie: 0
 }
         
 function computerMove() {
@@ -47,4 +47,6 @@ function playerMove(move) {
         score.lose++;
         alert('You lose! ' + 'the computer chose ' + computerMoviment + `\nWINS: ${score.win} | LOSES: ${score.lose} | TIES: ${score.tie}`)
     }
+
+    localStorage.setItem('score', JSON.stringify(score));
 }
