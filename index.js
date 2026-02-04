@@ -3,7 +3,12 @@ const score = JSON.parse(localStorage.getItem('score')) || {
     lose: 0,
     tie: 0
 }
-        
+
+let pElem1 = document.querySelector('.js-paragraph-1');
+let pElem2 = document.querySelector('.js-paragraph-2');
+
+updateLabel(score.win, score.lose, score.tie);
+
 function computerMove() {
     let computerMoviment = Math.random();
     if (computerMoviment > 0 && computerMoviment < 1/3) {
@@ -18,35 +23,48 @@ function computerMove() {
 }
 function playerMove(move) {
     let computerMoviment = computerMove();
+    let isWin;
 
     if (computerMoviment === move) {
         score.tie++;
-        alert('Draw! ' + 'the computer chose ' + computerMoviment + `\nWINS: ${score.win} | LOSES: ${score.lose} | TIES: ${score.tie}`)
+        isWin = 0;
     }
     if (computerMoviment === 'paper' && move === 'scissors') {
         score.win++;
-        alert('You win! ' + 'the computer chose ' + computerMoviment + `\nWINS: ${score.win} | LOSES: ${score.lose} | TIES: ${score.tie}`)
+        isWin = 1;
     }
     if (computerMoviment === 'paper' && move === 'rock') {
         score.lose++;
-        alert('You lose! ' + 'the computer chose ' + computerMoviment + `\nWINS: ${score.win} | LOSES: ${score.lose} | TIES: ${score.tie}`)
     }
     if (computerMoviment === 'scissors' && move === 'rock') {
         score.win++;
-        alert('You win! ' + 'the computer chose ' + computerMoviment + `\nWINS: ${score.win} | LOSES: ${score.lose} | TIES: ${score.tie}`)
+        isWin = 1;
     }
     if (computerMoviment === 'scissors' && move === 'paper') {
         score.lose++;
-        alert('You lose! ' + 'the computer chose ' + computerMoviment + `\nWINS: ${score.win} | LOSES: ${score.lose} | TIES: ${score.tie}`)
     }
     if (computerMoviment === 'rock' && move === 'paper') {
         score.win++;
-        alert('You win! ' + 'the computer chose ' + computerMoviment + `\nWINS: ${score.win} | LOSES: ${score.lose} | TIES: ${score.tie}`)
+        isWin = 1;
     }
     if (computerMoviment === 'rock' && move === 'scissors') {
         score.lose++;
-        alert('You lose! ' + 'the computer chose ' + computerMoviment + `\nWINS: ${score.win} | LOSES: ${score.lose} | TIES: ${score.tie}`)
     }
 
+    if (isWin === 1) {
+        pElem1.innerHTML = 'You win';
+    } else if (isWin === 0) {
+        pElem1.innerHTML = 'You tie';
+    } else {
+        pElem1.innerHTML = 'You lose';
+    }
+    
+    pElem2.innerHTML = `You picked ${move}, Computer picked ${computerMoviment}`;
+
+    updateLabel(score.win, score.lose, score.tie);
+
     localStorage.setItem('score', JSON.stringify(score));
+}
+function updateLabel(win, lose, tie) {
+    document.querySelector('.js-paragraph-3').innerHTML = `WINS: ${win} | LOSES: ${lose} | TIES: ${tie}`;
 }
