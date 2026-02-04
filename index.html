@@ -2,26 +2,43 @@
 <html>
     <head>
         <title>Rock, Paper, Scissors</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
 
-        <h1>Rock Paper Scissors</h1>
+        <p class="title">Rock Paper Scissors</p>
         <p>
-            <button onclick="playerMove('rock')">Rock</button>
-            <button onclick="playerMove('paper');">Paper</button>
-            <button onclick="playerMove('scissors')">Scissors</button>
-            <button onclick="
+            <button onclick="playGame('rock')"
+            class="move-button">
+                <img src="img/rock-emoji.png"
+                class="move-icon">
+            </button>
+            <button onclick="playGame('paper');"
+            class="move-button">
+                <img src="img/paper-emoji.png"
+                class="move-icon">
+            </button>
+            <button onclick="playGame('scissors')"
+            class="move-button">
+                <img src="img/scissors-emoji.png"
+                class="move-icon">
+            </button>
+        </p>
+        
+        <p class="js-paragraph-1 paragraph-1"></p>
+        <p class="js-paragraph-2 paragraph-2"></p>
+        <p class="js-paragraph-3 score">
+            WINS: 0 | LOSES: 0 | TIES: 0
+        </p>
+        <button onclick="
             score.win = 0;
             score.lose = 0;
             score.tie = 0;
             updateLabel(score.win, score.lose, score.tie);
-            localStorage.removeItem('score');
-            ">Reset score</button>
-        </p>
-    
-        <p class="js-paragraph-1"></p>
-        <p class="js-paragraph-2"></p>
-        <p class="js-paragraph-3">WINS: 0 | LOSES: 0 | TIES: 0</p>
+            localStorage.replayerMoveItem('score');"
+            class="button-reset">
+            Reset score
+        </button>
 
         <script src="index.js"></script>
     </body>

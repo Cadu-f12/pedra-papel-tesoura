@@ -3,13 +3,12 @@ const score = JSON.parse(localStorage.getItem('score')) || {
     lose: 0,
     tie: 0
 }
-
 let pElem1 = document.querySelector('.js-paragraph-1');
 let pElem2 = document.querySelector('.js-paragraph-2');
 
 updateLabel(score.win, score.lose, score.tie);
 
-function computerMove() {
+function computerplayerMove() {
     let computerMoviment = Math.random();
     if (computerMoviment > 0 && computerMoviment < 1/3) {
         return 'rock';
@@ -21,33 +20,33 @@ function computerMove() {
         return 'scissors'
     }
 }
-function playerMove(move) {
-    let computerMoviment = computerMove();
+function playGame(playerMove) {
+    let computerMoviment = computerplayerMove();
     let isWin;
 
-    if (computerMoviment === move) {
+    if (computerMoviment === playerMove) {
         score.tie++;
         isWin = 0;
     }
-    if (computerMoviment === 'paper' && move === 'scissors') {
+    if (computerMoviment === 'paper' && playerMove === 'scissors') {
         score.win++;
         isWin = 1;
     }
-    if (computerMoviment === 'paper' && move === 'rock') {
+    if (computerMoviment === 'paper' && playerMove === 'rock') {
         score.lose++;
     }
-    if (computerMoviment === 'scissors' && move === 'rock') {
+    if (computerMoviment === 'scissors' && playerMove === 'rock') {
         score.win++;
         isWin = 1;
     }
-    if (computerMoviment === 'scissors' && move === 'paper') {
+    if (computerMoviment === 'scissors' && playerMove === 'paper') {
         score.lose++;
     }
-    if (computerMoviment === 'rock' && move === 'paper') {
+    if (computerMoviment === 'rock' && playerMove === 'paper') {
         score.win++;
         isWin = 1;
     }
-    if (computerMoviment === 'rock' && move === 'scissors') {
+    if (computerMoviment === 'rock' && playerMove === 'scissors') {
         score.lose++;
     }
 
@@ -59,7 +58,10 @@ function playerMove(move) {
         pElem1.innerHTML = 'You lose';
     }
     
-    pElem2.innerHTML = `You picked ${move}, Computer picked ${computerMoviment}`;
+    pElem2.innerHTML = `You
+    <img src="img/${playerMove}-emoji.png" class="move-icon">
+    <img src="img/${computerMoviment}-emoji.png" class="move-icon">
+    Computer.`;
 
     updateLabel(score.win, score.lose, score.tie);
 
