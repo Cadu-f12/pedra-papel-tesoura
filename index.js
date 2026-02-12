@@ -59,8 +59,8 @@ function playGame(playerMove) {
     }
     
     pElem2.innerHTML = `You
-    <img src="img/${playerMove}-emoji.png" class="move-icon">
-    <img src="img/${computerMoviment}-emoji.png" class="move-icon">
+    <img src="img/${playerMove}.png" class="move-icon">
+    <img src="img/${computerMoviment}.png" class="move-icon">
     Computer.`;
 
     updateLabel(score.win, score.lose, score.tie);
