@@ -6,6 +6,10 @@ body {
 button {
     cursor: pointer;
 }
+.main {
+    text-align: center;      /* Garante que o texto dentro da div também fique no meio */
+    padding: 20px;
+}
 .title {
     font-size: 30px;
     font-weight: bold;
@@ -27,7 +31,8 @@ button {
 .score {
     margin-top: 35px;
 }
-.button-reset {
+.button-reset,
+.auto-play-button {
     padding: 10px 15px;
     border: none;
 }

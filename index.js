@@ -6,6 +6,9 @@ const score = JSON.parse(localStorage.getItem('score')) || {
 let pElem1 = document.querySelector('.js-paragraph-1');
 let pElem2 = document.querySelector('.js-paragraph-2');
 
+let isPlaying = false;
+let intervalId;
+
 updateLabel(score.win, score.lose, score.tie);
 
 function computerplayerMove() {
@@ -69,4 +72,24 @@ function playGame(playerMove) {
 }
 function updateLabel(win, lose, tie) {
     document.querySelector('.js-paragraph-3').innerHTML = `WINS: ${win} | LOSES: ${lose} | TIES: ${tie}`;
+}
+function autoPlay() {
+    const autoPlayElement = document.querySelector('.auto-play-button');
+
+    if (!isPlaying) {
+        intervalId = setInterval(
+            () => {
+                let computerMove = computerplayerMove();
+
+                playGame(computerMove);
+            }, 500
+        );
+        autoPlayElement.innerHTML = 'Stop playing';
+        isPlaying = true;
+        return;
+    }
+    
+    autoPlayElement.innerHTML = 'Auto play';
+    clearInterval(intervalId);
+    isPlaying = false;
 }
