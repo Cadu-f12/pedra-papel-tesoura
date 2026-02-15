@@ -54,24 +54,24 @@ function playGame(playerMove) {
     }
 
     if (isWin === 1) {
-        pElem1.innerHTML = 'You win';
+        pElem1.innerHTML = 'Você venceu!';
     } else if (isWin === 0) {
-        pElem1.innerHTML = 'You tie';
+        pElem1.innerHTML = 'Vocês empataram';
     } else {
-        pElem1.innerHTML = 'You lose';
+        pElem1.innerHTML = 'Você perdeu';
     }
     
-    pElem2.innerHTML = `You
+    pElem2.innerHTML = `Você pegou
     <img src="img/${playerMove}.png" class="move-icon">
     <img src="img/${computerMoviment}.png" class="move-icon">
-    Computer.`;
+    O computador pegou.`;
 
     updateLabel(score.win, score.lose, score.tie);
 
     localStorage.setItem('score', JSON.stringify(score));
 }
 function updateLabel(win, lose, tie) {
-    document.querySelector('.js-paragraph-3').innerHTML = `WINS: ${win} | LOSES: ${lose} | TIES: ${tie}`;
+    document.querySelector('.js-paragraph-3').innerHTML = `Vitórias: ${win} | Derrotas: ${lose} | Empates: ${tie}`;
 }
 function autoPlay() {
     const autoPlayElement = document.querySelector('.auto-play-button');
@@ -84,12 +84,12 @@ function autoPlay() {
                 playGame(computerMove);
             }, 500
         );
-        autoPlayElement.innerHTML = 'Stop playing';
+        autoPlayElement.innerHTML = 'Parar';
         isPlaying = true;
         return;
     }
     
-    autoPlayElement.innerHTML = 'Auto play';
+    autoPlayElement.innerHTML = 'Jogada automatica';
     clearInterval(intervalId);
     isPlaying = false;
 }
